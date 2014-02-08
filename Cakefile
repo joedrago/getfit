@@ -24,6 +24,8 @@ browserify = require 'browserify'
 fs         = require 'fs'
 util       = require 'util'
 watch      = require 'node-watch'
+http       = require 'http'
+socketIO   = require 'socket.io'
 
 generateJSBundle = (e, cb) ->
   name = e.name
@@ -78,11 +80,19 @@ task 'server', 'Run server and watch for changed source files to automatically r
 
     nodeStatic = require 'node-static'
     file = new nodeStatic.Server '.'
-    require('http').createServer (request, response) ->
+    httpServer = http.createServer (request, response) ->
       request.addListener 'end', ->
         file.serve(request, response);
       .resume()
-    .listen options.port
+    io = socketIO.listen httpServer
+    io.set 'log level', 1
+    io.sockets.on 'connection', (socket) ->
+      io.sockets.emit 'new', {}
+      socket.on 'msg', (data) ->
+        console.log "bouncing msg: " + JSON.stringify(data)
+        socket.broadcast.emit 'msg', data
+
+    httpServer.listen options.port
 
     watch 'src', (filename) ->
       util.log "Source code #{filename} changed, regenerating bundle..."

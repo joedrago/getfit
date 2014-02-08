@@ -1,1 +1,38 @@
-hi
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>GetFit</title>
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="screen.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<style>
+
+body {
+    background-color: #000000;
+}
+
+#timer {
+    font-size: 25em;
+    font-family: Liquid Crystal;
+    font-weight: 900;
+    color: #ff0000;
+}
+
+.seconds {
+}
+
+</style>
+</head>
+<body>
+
+<div id="timer">00:00</div>
+
+<script>
+var screen = require("screen");
+$(function() {
+    screen.ready();
+});
+</script>
+</body>
+</html>
