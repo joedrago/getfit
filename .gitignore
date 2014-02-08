@@ -1,0 +1,4 @@
+node_modules
+/screen/screen.js
+/controller/controller.js
+/*.sublime-workspace

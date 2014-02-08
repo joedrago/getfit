@@ -1,0 +1,14 @@
+{
+  "name": "getfit",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "browserify": "*",
+    "coffeeify": "*",
+    "mold-source-map": "*",
+    "node-watch": "*",
+    "async": "*",
+    "node-static": "*",
+    "socket.io": "*"
+  }
+}
