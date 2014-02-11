@@ -9,24 +9,40 @@
 <style>
 
 body {
-    background-color: #000000;
+    background-color: #000;
 }
 
-#timer {
-    font-size: 25em;
+#centertext {
+}
+
+.clock {
+    font-size: 15em;
     font-family: Liquid Crystal;
     font-weight: 900;
     color: #ff0000;
 }
 
-.seconds {
+.countdown {
+    font-size: 20em;
+    font-family: Liquid Crystal;
+    font-weight: 900;
+    color: #00ff00;
+}
+
+#logo {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
 }
 
 </style>
 </head>
 <body>
 
-<div id="timer">00:00</div>
+<img id="logo" src="/images/logo_inverted.jpg">
+
+<div id="centertext"></div>
 
 <script>
 var screen = require("screen");

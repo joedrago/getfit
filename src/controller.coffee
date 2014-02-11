@@ -28,14 +28,26 @@ class Controller
       @state = msg.state
       console.log "received screen state: ", @state
 
-  reset: ->
-    @send {
-      type: 'reset'
-    }
-
   startstop: ->
+    countdown = parseInt($("#countdown").val())
+    countdown = (countdown > 0)
     @send {
       type: 'startstop'
+      countdown: countdown
+    }
+
+  stopwatch: ->
+    @send {
+      type: 'stopwatch'
+    }
+
+  timer: ->
+    mins = parseInt($("#timer_mins").val())
+    secs = parseInt($("#timer_secs").val())
+    totalSeconds = (mins * 60) + secs
+    @send {
+      type: 'timer'
+      seconds: totalSeconds
     }
 
 # --------------------------------------------------------------
@@ -45,7 +57,9 @@ module.exports =
   ready: ->
     console.log "ui is ready"
     gController = new Controller
-  reset: ->
-    gController.reset()
+  stopwatch: ->
+    gController.stopwatch()
+  timer: ->
+    gController.timer()
   startstop: ->
     gController.startstop()
